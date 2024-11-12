@@ -1,43 +1,114 @@
 import Feather from '@expo/vector-icons/Feather';
 import { Tabs } from 'expo-router';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
+import { StyleSheet, View } from 'react-native';
+import Entypo from '@expo/vector-icons/Entypo';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'red', tabBarActiveBackgroundColor: '#E7D2C0', tabBarInactiveBackgroundColor: '' }}>
+    <Tabs screenOptions={{ 
+      tabBarActiveTintColor: 'black', 
+      tabBarActiveBackgroundColor: '#FF7824', 
+      tabBarInactiveBackgroundColor: '#FF7824', 
+      tabBarStyle: styles.tabBar,
+      tabBarShowLabel: false
+    }}>
       <Tabs.Screen
-        name="map"
+        name="cart"
         options={{
-          title: 'Mapa',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons size={28} name="map-legend" color={color} />,
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+              <Entypo
+                size={30} 
+                name="shopping-cart" 
+                color={focused ? 'black' : 'white'} // Define a cor do ícone ativo
+              />
+          ),
           headerShown: false, 
         }}
       />
       <Tabs.Screen
-        name="roteiros"
+        name="notifications"
         options={{
-          title: 'Roteiros',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="car-wireless" size={24} color={color} />,
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+            <Feather
+              name="bell" 
+              size={30} 
+              color={focused ? 'black' : 'white'} // Define a cor do ícone ativo
+            />
+          ),
           headerShown: false, 
+        }}
+      />
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+            <View style={styles.homeButton}>
+            <MaterialCommunityIcons 
+              name="home"  // Ícone alterado para "home"
+              size={50} 
+              color={focused ? 'black' :  '#FF7824'} // Define a cor do ícone ativo
+            />
+            </View>
+          ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="busca"
         options={{
-          title: 'Buscas',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="map-search" size={24} color={color} />,
-          headerShown: false, // Adicionando headerShown como false
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+            <AntDesign
+              name="search1" 
+              size={30} 
+              color={focused ? 'black' : 'white'} 
+            />
+          ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen
-        name="contato"
+        name="profile"
         options={{
-          title: 'Contato',
-          tabBarIcon: ({ color }) => <Feather name="phone-call" size={24} color={color} />,
-          headerShown: false, // Adicionando headerShown como false
+          title: '',
+          tabBarIcon: ({ color, focused }) => (
+            <FontAwesome5 
+              name="user" 
+              size={30} 
+              color={focused ? 'black' : 'white'} // Define a cor do ícone ativo
+            />
+          ),
+          headerShown: false,
         }}
       />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: '#FF7824',
+    height: 60,
+    position: 'absolute',
+    borderRadius: 30,
+    borderTopWidth: 0,
+  },
+  homeButton: {
+    width: 70,
+    height: 70,
+    backgroundColor: 'white',
+    borderRadius: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 30,
+    borderColor: 'white',
+    borderWidth: 3,
+  },
+});

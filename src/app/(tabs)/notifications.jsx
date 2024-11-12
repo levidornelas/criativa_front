@@ -4,9 +4,9 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 export default function MapPage() {
   return (
       <View style={styles.container}>
-        <Text>Página de contato</Text>
+        <Text>Página de Notificações</Text>
         <Image
-          source={require('../../../assets/Vi.png')}
+          source={require('../../../assets/blacklogo.png')}
           style={styles.logoStyle}
         />
       </View>
@@ -16,15 +16,13 @@ export default function MapPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7E6CC',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   logoStyle: {
     position: 'absolute',
-    top: 20,
+    top: 50,
     right: 10,
-    width: 100,
-    height: 100,
   },
 });

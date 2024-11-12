@@ -1,19 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 
 export default function LoginScreen() {
   return (
-    <ImageBackground
-      source={require('../../assets/bg_login.png')} // Caminho da sua imagem de fundo
-      style={styles.background}
-    >
-      <View style={styles.container}>
+    <View style={styles.wrapper}>
+      {/* Imagem de Fundo */}
+      <ImageBackground
+        source={require('../../assets/criativa_bg.png')} // Caminho da sua imagem de fundo
+        style={styles.background} 
+      >
         {/* Logo */}
-        <Image source={require('../../assets/ecobytelogo.png')} style={styles.logo} />
+      </ImageBackground>
 
+      {/* Container de Login */}
+      <View style={styles.container}>
+        <Image source={require('../../assets/logo_top.png')} style={styles.mainlogo} />
+        <Image source={require('../../assets/logo_bottom.png')} style={styles.logo} />
+        
         {/* Campo de Email ou Telefone */}
         <TextInput
           style={styles.input}
@@ -37,23 +42,19 @@ export default function LoginScreen() {
         </TouchableOpacity>
 
         {/* Botão Entrar */}
-        <Link href={'/map'} asChild>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>ENTRAR</Text>
+        <Link href={'/home'} asChild>
+          <TouchableOpacity style={styles.loginButton}>
+            <Text style={styles.loginButtonText}>ENTRAR</Text>
+          </TouchableOpacity>
+        </Link>
+
+    
+        {/* Link para Entrar como Convidado */}
+        <Link href={'/home'} asChild>
+        <TouchableOpacity>
+          <Text style={styles.guestText}>Entrar como Convidado</Text>
         </TouchableOpacity>
         </Link>
-        {/* Botão Cadastrar-se com Gradiente */}
-        <TouchableOpacity style={styles.signupButton}>
-          <LinearGradient
-            colors={['#FFDF2B', '#10A683']}
-            start={[0, 0]}
-            end={[1, 1]}
-            style={styles.gradientBackground}
-          >
-            <Text style={styles.signupButtonText}>CADASTRE-SE</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-
         {/* Linha separadora */}
         <View style={styles.separatorContainer}>
           <View style={styles.separatorLine} />
@@ -61,35 +62,43 @@ export default function LoginScreen() {
           <View style={styles.separatorLine} />
         </View>
 
-        {/* Botões de Login com Google e Outro Serviço */}
+        {/* Botões de Login com Google e Facebook */}
         <View style={styles.socialLoginContainer}>
           <TouchableOpacity>
-            <Image source={require('../../assets/google_logo.png')} style={styles.socialIcon} />
+            <Image source={require('../../assets/google_logo.png')} style={styles.socialIcon1} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.logobutton}>
-            <Image source={require('../../assets/logobb.png')} style={styles.socialIcon} />
+          <TouchableOpacity>
+            <Image source={require('../../assets/logo.png')} style={styles.socialIcon} />
           </TouchableOpacity>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
+  wrapper: {
     flex: 1,
-    resizeMode: 'cover', // Ajusta a imagem para cobrir a tela inteira
+    backgroundColor: '#FAEBDD', // Cor de fundo
+  },
+  background: {
+    width: '100%',
+    height: 250, // Reduzindo a altura da imagem de fundo
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo:{
+    marginBottom: 30
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: 20,
-  },
-  logo: {
-    width: 170,
-    height: 120,
-    marginBottom: 30,
+    backgroundColor: '#FFF6E5',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    marginTop: -20,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   input: {
     width: '100%',
@@ -111,13 +120,13 @@ const styles = StyleSheet.create({
     right: 15,
   },
   forgotPasswordText: {
-    color: '#1E90FF',
+    color: '#FF914D',
     marginVertical: 10,
   },
   loginButton: {
     width: '100%',
     height: 50,
-    backgroundColor: '#00B386',
+    backgroundColor: '#FF914D',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -128,22 +137,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  signupButton: {
-    width: '100%',
-    height: 50,
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginBottom: 20,
-  },
-  gradientBackground: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  signupButtonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: 'bold',
+  guestText: {
+    color: '#FF914D',
+    textAlign: 'center',
+    marginVertical: 10,
   },
   separatorContainer: {
     flexDirection: 'row',
@@ -166,12 +163,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
   },
+  socialIcon1: {
+    width: 40,
+    height: 40,
+    marginHorizontal: 5,
+  },
   socialIcon: {
     width: 50,
-    height: 50,
-    marginHorizontal: 10,
+    height: 40, // Alinhando o tamanho com socialIcon1
+    marginHorizontal: 5,
   },
-  logobutton:{
-    
-  }
 });

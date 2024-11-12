@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 export default function MapPage() {
   return (
       <View style={styles.container}>
-        <Text>Página de busca</Text>
+        <Text>Página de perfil</Text>
         <Image
           source={require('../../../assets/blacklogo.png')}
           style={styles.logoStyle}
